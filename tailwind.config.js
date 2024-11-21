@@ -97,7 +97,30 @@ export default {
 			fontSize: {
 				"size-1": "1rem",
 			},
+			// scrollbar: {
+			// 	thumb: {
+			// 		DEFAULT: '#FEAA1A', // Default thumb color
+			// 		hover: '#E58817',   // Thumb color on hover
+			// 	},
+			// 	track: {
+			// 		DEFAULT: 'transparent', // Default track color
+			// 	},
+			// },
+		},
+		screens: {
+			'tablet': '640px',
+			// => @media (min-width: 640px) { ... }
+
+			'laptop': '1024px',
+			// => @media (min-width: 1024px) { ... }
+
+			'desktop': '1280px',
+			// => @media (min-width: 1280px) { ... }
 		},
 	},
-	plugins: [],
+	plugins: [
+		require('tailwind-scrollbar')({
+			nocompatible: true, // Use modern syntax if you're not supporting older browsers.
+		}),
+	],
 };

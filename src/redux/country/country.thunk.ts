@@ -14,7 +14,7 @@ export const fetchAllCountries = () => async (dispatch: AppDispatch) => {
   }
 }
 
-export const fetchDetailCountry = () => async (dispatch: AppDispatch) => {
+export const fetchDetailCountry = () => async () => {
   try {
 
   } catch (error) {

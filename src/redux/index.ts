@@ -26,6 +26,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [PERSIST, REHYDRATE, REGISTER],
       },
+      immutableCheck: false
     }).concat(thunk),
 });
 

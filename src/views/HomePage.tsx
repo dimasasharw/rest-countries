@@ -23,15 +23,15 @@ const HomePage = () => {
   return (
     <>
       <div className="flex flex-col w-full h-full text-[2rem] overflow-y-scroll scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
-        <div className="flex flex-col w-full mx-auto justify-center items-center self-stretch">
+        <div className="flex flex-col w-full px-[2rem] justify-center items-center self-stretch">
           <h1 className="flex justify-center items-center text-center ">List of Countries</h1>
-          <div className="flex flex-wrap w-full h-full items-center justify-center gap-3 my-3 text-center">
+          <div className="flex flex-wrap w-full h-full items-center justify-center gap-6 my-3 text-center">
             {(countries && countries?.length > 0) &&
               countries?.map((country: any, index: number) => (
                 <div
                   key={index}
-                  className="cursor-pointer  transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:-translate-y-1 hover:z-10"
-                  onClick={() => navigate("/detail")}
+                  className="cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:-translate-y-1 hover:z-10"
+                  onClick={() => navigate(`/${country?.name?.common}`)}
                 >
                   <CountryCard country={country} />
                 </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AppDispatch } from "../../types/declarations";
 import { baseURL } from "../../url";
-import { setCountries } from "./country.slice";
+import { setCountries, setCountry } from "./country.slice";
 
 
 export const fetchAllCountries = () => async (dispatch: AppDispatch) => {
@@ -14,9 +14,11 @@ export const fetchAllCountries = () => async (dispatch: AppDispatch) => {
   }
 }
 
-export const fetchDetailCountry = () => async () => {
+export const fetchDetailCountry = (countryName: string) => async (dispatch: AppDispatch) => {
   try {
-
+    const responseDetail = await axios(`${baseURL}/name/${countryName}`)
+    // console.log(responseDetail?.data, '<detail country')
+    dispatch(setCountry(responseDetail?.data[0]))
   } catch (error) {
     console.log(error)
   }

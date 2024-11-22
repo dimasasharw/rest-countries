@@ -97,15 +97,15 @@ export default {
 			fontSize: {
 				"size-1": "1rem",
 			},
-			// scrollbar: {
-			// 	thumb: {
-			// 		DEFAULT: '#FEAA1A', // Default thumb color
-			// 		hover: '#E58817',   // Thumb color on hover
-			// 	},
-			// 	track: {
-			// 		DEFAULT: 'transparent', // Default track color
-			// 	},
-			// },
+			animation: {
+				wave: 'wave 1.5s linear infinite',
+			},
+			keyframes: {
+				wave: {
+					'0%': { backgroundPosition: '-200% 0' },
+					'100%': { backgroundPosition: '200% 0' },
+				},
+			},
 		},
 		screens: {
 			'tablet': '640px',

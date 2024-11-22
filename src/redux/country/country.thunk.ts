@@ -1,11 +1,12 @@
 import axios from "axios";
 import { AppDispatch } from "../../types/declarations";
 import { baseURL } from "../../url";
-import { setCountries, setCountry } from "./country.slice";
+import { setCountries, setCountry, setLoading } from "./country.slice";
 
 
 export const fetchAllCountries = () => async (dispatch: AppDispatch) => {
   try {
+    dispatch(setLoading(true));
     const response = await axios(`${baseURL}/all`)
     // console.log(response, '<<<<response getall')
     dispatch(setCountries(response?.data))
@@ -14,12 +15,23 @@ export const fetchAllCountries = () => async (dispatch: AppDispatch) => {
   }
 }
 
-export const fetchDetailCountry = (countryName: string) => async (dispatch: AppDispatch) => {
+export const fetchDetailCountry = (countryName: string, cca2: string) => async (dispatch: AppDispatch) => {
   try {
-    const responseDetail = await axios(`${baseURL}/name/${countryName}`)
-    // console.log(responseDetail?.data, '<detail country')
-    dispatch(setCountry(responseDetail?.data[0]))
+    dispatch(setLoading(true));
+
+    // Fetch the detail country using both `countryName` and `cca2`
+    const responseDetail = await axios(`${baseURL}/name/${countryName}`);
+
+    const country = responseDetail?.data?.find((item: any) => item.cca2 === cca2);
+    console.log(country, 'from thunk')
+    if (country) {
+      dispatch(setCountry(country));
+    } else {
+      console.error("No matching country found for the provided cca2.");
+    }
   } catch (error) {
-    console.log(error)
+    console.log(error);
+  } finally {
+    dispatch(setLoading(false));
   }
-}
+};

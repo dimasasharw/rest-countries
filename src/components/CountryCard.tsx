@@ -14,10 +14,10 @@ export default function CountryCard({ country }: CountryCardProps) {
     <Card sx={{
       width: 260,
       backgroundColor: '#E7E5E4',
-      transition: 'none', // Disable any hover transition
+      transition: 'none',
       '&:hover': {
-        boxShadow: 'none', // Prevent box-shadow changes on hover
-        transform: 'none', // Prevent scale/transform effects on hover
+        boxShadow: 'none',
+        transform: 'none',
       },
     }} >
       <CardMedia
@@ -26,8 +26,8 @@ export default function CountryCard({ country }: CountryCardProps) {
           minHeight: 180,
           maxHeight: 180,
           objectFit: 'contain',
-          // backgroundColor: '#f5f5f5', // Add a neutral background color
-          padding: '0.5rem', // Add padding to give space around irregular shapes
+          // backgroundColor: '#f5f5f5',
+          padding: '0.5rem',
         }}
         image={country?.flags?.png}
         title={`${country?.name?.common} flag`}

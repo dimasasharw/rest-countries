@@ -21,10 +21,13 @@ const countrySlice = createSlice({
       state.loading = false;
     },
     clearCountry: (state) => {
-      state.country = {}
-    }
+      state.country = {};
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
   }
 })
 
-export const { setCountries, setCountry, clearCountry } = countrySlice.actions;
+export const { setCountries, setCountry, clearCountry, setLoading } = countrySlice.actions;
 export default countrySlice.reducer;

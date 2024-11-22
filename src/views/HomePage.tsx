@@ -31,7 +31,7 @@ const HomePage = () => {
                 <div
                   key={index}
                   className="cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:-translate-y-1 hover:z-10"
-                  onClick={() => navigate(`/${country?.name?.common}`)}
+                  onClick={() => navigate(`/${country?.name?.common}/${country?.cca2}`)}
                 >
                   <CountryCard country={country} />
                 </div>

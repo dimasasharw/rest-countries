@@ -49,10 +49,10 @@ const DetailPage = () => {
           ) : (
           )} */}
           <div className=" text-lg text-justify">
-            {`Officially known as ${country.name.official}. This ${country.independent ? "independent" : "non-independent"
-              } country is located in ${country.subregion}, a part of the ${country.region
-              } region. It is ${country.capital.length > 0 ? `proudly led from its capital, ${country.capital[0]}` : "without a designated capital"
-              } and has a population of approximately ${country.population.toLocaleString()} people. 
+            {`Officially known as ${country?.name?.official}. This ${country?.independent ? "independent" : "non-independent"
+              } country is located in ${country?.subregion}, a part of the ${country?.region
+              } region. It is ${country?.capital?.length > 0 ? `proudly led from its capital, ${country?.capital[0]}` : "without a designated capital"
+              } and has a population of approximately ${country?.population?.toLocaleString()} people. 
               `}
             {/* <a
               href={country.maps.googleMaps}

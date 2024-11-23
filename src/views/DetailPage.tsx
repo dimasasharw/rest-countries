@@ -80,11 +80,11 @@ const DetailPage = () => {
             </div>
             <div className="flex flex-col w-full justify-center items-start text-start p-2">
               <ul>
-                {Object?.keys(country?.languages)?.length > 0 &&
+                {(country && country?.languages && Object?.keys(country?.languages)?.length > 0) &&
                   Object?.values(country?.languages)?.map((languange: any, i: number) => (
-                    <>
+                    <div key={i}>
                       <li key={i} className="text-start">&bull; {languange}</li>
-                    </>
+                    </div>
                   ))
                 }
               </ul>
@@ -98,11 +98,11 @@ const DetailPage = () => {
             </div>
             <div className="flex flex-col w-full justify-center items-start text-start p-2">
               <ul>
-                {Object?.keys(country?.currencies)?.length > 0 &&
+                {(country && country?.currencies && Object?.keys(country?.currencies)?.length > 0) &&
                   Object?.keys(country?.currencies)?.map((currency: any, i: number) => (
-                    <>
+                    <div key={i}>
                       <li key={i} className="text-start">&bull; {currency} ({country?.currencies[currency]?.name})</li>
-                    </>
+                    </div>
                   ))
                 }
               </ul>

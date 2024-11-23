@@ -4,3 +4,7 @@ export interface CountryState {
   country: any;
   loading: boolean;
 }
+export interface CollaborationState {
+  collaboratedCountries: any[];
+  loadingCollaboration: boolean;
+}

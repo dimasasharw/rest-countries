@@ -75,3 +75,16 @@ button:focus-visible {
 	font-family: "Manrope", sans-serif;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+	width: 0px;
+	background: transparent;
+	scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	/* IE and Edge */
+	scrollbar-width: none;
+	scroll-behavior: smooth;
+	/* Enable smooth scrolling */
+}

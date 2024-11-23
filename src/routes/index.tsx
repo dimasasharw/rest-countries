@@ -1,14 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import {  lazy } from "react";
+import { lazy } from "react";
 
 // Lazy-loaded components
 const Parent = lazy(() => import("../components/Parent"));
 const HomePage = lazy(() => import("../views/HomePage"));
 const DetailPage = lazy(() => import("../views/DetailPage"));
+const CollaborationPage = lazy(() => import("../views/CollaborationPage"))
 
 const router = createBrowserRouter([
   {
-    element: <Parent />, 
+    element: <Parent />,
     children: [
       {
         path: '/',
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/:countryName/:cca2',
-        element: <DetailPage />, 
+        element: <DetailPage />,
+      },
+      {
+        path: '/country-collaborations',
+        element: <CollaborationPage />,
       },
     ],
   },

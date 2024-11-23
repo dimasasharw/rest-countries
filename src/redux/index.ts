@@ -6,10 +6,12 @@ import persistStore from "redux-persist/es/persistStore";
 import storage from 'redux-persist/lib/storage';
 import { thunk } from "redux-thunk";
 import country from './country/country.slice'
+import collaboration from './collaboration/collaboration.slice'
 
 
 const rootReducer = combineReducers({
-  country
+  country,
+  collaboration
 });
 
 const persistConfig = {
@@ -31,5 +33,6 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default store

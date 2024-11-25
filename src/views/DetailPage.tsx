@@ -4,11 +4,17 @@ import { useParams } from "react-router-dom";
 import { AppDispatch } from "../types/declarations";
 import { fetchDetailCountry } from "../redux/country/country.thunk";
 import { Button } from "@mui/material";
+import { addCollaborationCountryList } from "../redux/collaboration/collaboration.slice";
 
 const DetailPage = () => {
   const { countryName, cca2 } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const { country, loading } = useSelector((state: any) => state.country);
+  const { collaboratedCountries } = useSelector((state: any) => state.collaboration);
+  const isCollaborated = collaboratedCountries.some(
+    (collaborator: any) => collaborator.name.common === country.name.common
+  );
+
   useEffect(() => {
     if (countryName && cca2) {
       dispatch(fetchDetailCountry(countryName, cca2));
@@ -52,15 +58,12 @@ const DetailPage = () => {
           ) : (
           )} */}
             <div className=" text-lg text-justify">
-              {`Officially known as ${country?.name?.official}. This ${
-                country?.independent ? "independent" : "non-independent"
-              } country is located in ${country?.subregion}, a part of the ${
-                country?.region
-              } region. It is ${
-                country?.capital?.length > 0
+              {`Officially known as ${country?.name?.official}. This ${country?.independent ? "independent" : "non-independent"
+                } country is located in ${country?.subregion}, a part of the ${country?.region
+                } region. It is ${country?.capital?.length > 0
                   ? `proudly led from its capital, ${country?.capital[0]}`
                   : "without a designated capital"
-              } and has a population of approximately ${country?.population?.toLocaleString()} people. 
+                } and has a population of approximately ${country?.population?.toLocaleString()} people. 
               `}
               {/* <a
               href={country.maps.googleMaps}
@@ -81,6 +84,29 @@ const DetailPage = () => {
           {/* Second Div */}
           <div className="flex flex-col min-w-[15rem] gap-2 p-3 flex-1">
             <h2 className="font-semibold text-xl my-2">Other Information</h2>
+            {/* land-area */}
+            <div className="flex w-full min-h-[3rem] bg-green-200">
+              <div className="flex w-[10rem] px-2 justify-between items-center text-start bg-red-100">
+                <p>Region</p>
+                <p>:</p>
+              </div>
+              <div className="flex flex-col w-full justify-center items-start text-start p-2">
+                <p className="text-start">
+                  {country?.region}
+                </p>
+              </div>
+            </div>
+            <div className="flex w-full min-h-[3rem] bg-green-200">
+              <div className="flex w-[10rem] px-2 justify-between items-center text-start bg-red-100">
+                <p>Subregion</p>
+                <p>:</p>
+              </div>
+              <div className="flex flex-col w-full justify-center items-start text-start p-2">
+                <p className="text-start">
+                  {country?.subregion}
+                </p>
+              </div>
+            </div>
             {/* language */}
             <div className="flex w-full min-h-[3rem] bg-green-200">
               <div className="flex w-[10rem] px-2 justify-between items-center text-start bg-red-100">
@@ -128,6 +154,20 @@ const DetailPage = () => {
                 </ul>
               </div>
             </div>
+            {/* timezones */}
+            <div className="flex w-full min-h-[3rem] bg-green-200">
+              <div className="flex w-[10rem] px-2 justify-between items-center text-start bg-red-100">
+                <p>Timezones</p>
+                <p>:</p>
+              </div>
+              <div className="flex flex-col w-full justify-center items-start text-start p-2">
+                <p>
+                  {country && country?.timezones?.length > 0
+                    ? country?.timezones.join(", ")
+                    : "No timezones available"}
+                </p>
+              </div>
+            </div>
             {/* independent */}
             <div className="flex w-full min-h-[3rem] bg-green-200">
               <div className="flex w-[10rem] px-2 justify-between items-center text-start bg-red-100">
@@ -164,8 +204,9 @@ const DetailPage = () => {
                 </p>
               </canvas>
             </div>
-            <div className="flex absolute left-0 bottom-0 w-full justify-center items-center h-[10vh]">
-              <Button variant="outlined">Collaborate</Button>
+            <div className={`flex absolute left-0 bottom-0 w-full justify-center items-center h-[10vh]
+              ${isCollaborated ? "hidden" : ""}`}>
+              <Button variant="outlined" onClick={() => dispatch(addCollaborationCountryList(country))}>Collaborate</Button>
             </div>
           </div>
         </div>

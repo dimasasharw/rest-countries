@@ -47,7 +47,7 @@ export const addCollaborationCountryList = (newCollaborator: any) =>
       console.log(`Sorry, ${newCollaborator.name.common} ignored to collaborate.`);
     }
 
-    // Set loadingCollaboration to false after 1 second
+    // Set loadingCollaboration to false after 1 second(s)
     setTimeout(() => {
       dispatch(setLoadingCollaboration(false));
     }, 1000);

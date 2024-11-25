@@ -8,22 +8,24 @@ import { Button } from "@mui/material";
 const DetailPage = () => {
   const { countryName, cca2 } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-  const { country, loading } = useSelector((state: any) => state.country)
+  const { country, loading } = useSelector((state: any) => state.country);
   useEffect(() => {
     if (countryName && cca2) {
-      dispatch(fetchDetailCountry(countryName, cca2))
+      dispatch(fetchDetailCountry(countryName, cca2));
     }
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
-    console.log(country, '<<<<from store country detail')
-  }, [])
+    console.log(country, "<<<<from store country detail");
+  }, []);
 
   return (
     <div className="flex items-center justify-center w-full h-full ">
       <div className="flex w-[95%] h-[85vh] bg-[#E7E5E4] rounded-xl p-2 shadow-xl">
         {loading && (
-          <div className={`flex justify-center items-center backdrop-blur-[1px] w-full h-full z-10 absolute top-0 left-0 mx-auto my-auto`}>
+          <div
+            className={`flex justify-center items-center backdrop-blur-[1px] w-full h-full z-10 absolute top-0 left-0 mx-auto my-auto`}
+          >
             <img src={`${window.location.origin}/loading-docs.svg`} />
           </div>
         )}
@@ -32,13 +34,13 @@ const DetailPage = () => {
           <div className="flex flex-col items-center text-lg leading-relaxed text-gray-700 gap-3 justify-start p-3 flex-1">
             <h1 className="font-semibold text-4xl my-4">{countryName}</h1>
             <div className="flex w-full p-5 flex-wrap justify-around items-center gap-3">
-              {country?.coatOfArms?.png &&
+              {country?.coatOfArms?.png && (
                 <img
                   src={country?.coatOfArms?.png}
                   alt={`${country?.name?.common} flag`}
                   className="max-w-[12rem] h-auto"
                 />
-              }
+              )}
               <img
                 src={country?.flags?.png}
                 alt={`${country?.name?.common} flag`}
@@ -50,10 +52,15 @@ const DetailPage = () => {
           ) : (
           )} */}
             <div className=" text-lg text-justify">
-              {`Officially known as ${country?.name?.official}. This ${country?.independent ? "independent" : "non-independent"
-                } country is located in ${country?.subregion}, a part of the ${country?.region
-                } region. It is ${country?.capital?.length > 0 ? `proudly led from its capital, ${country?.capital[0]}` : "without a designated capital"
-                } and has a population of approximately ${country?.population?.toLocaleString()} people. 
+              {`Officially known as ${country?.name?.official}. This ${
+                country?.independent ? "independent" : "non-independent"
+              } country is located in ${country?.subregion}, a part of the ${
+                country?.region
+              } region. It is ${
+                country?.capital?.length > 0
+                  ? `proudly led from its capital, ${country?.capital[0]}`
+                  : "without a designated capital"
+              } and has a population of approximately ${country?.population?.toLocaleString()} people. 
               `}
               {/* <a
               href={country.maps.googleMaps}
@@ -64,10 +71,11 @@ const DetailPage = () => {
               Google Maps
             </a>. */}
             </div>
-            <div >
-              <p className="justify-normal text-justify">{country?.flags?.alt}</p>
+            <div>
+              <p className="justify-normal text-justify">
+                {country?.flags?.alt}
+              </p>
             </div>
-
           </div>
 
           {/* Second Div */}
@@ -81,13 +89,18 @@ const DetailPage = () => {
               </div>
               <div className="flex flex-col w-full justify-center items-start text-start p-2">
                 <ul>
-                  {(country && country?.languages && Object?.keys(country?.languages)?.length > 0) &&
-                    Object?.values(country?.languages)?.map((languange: any, i: number) => (
-                      <div key={i}>
-                        <li key={i} className="text-start">&bull; {languange}</li>
-                      </div>
-                    ))
-                  }
+                  {country &&
+                    country?.languages &&
+                    Object?.keys(country?.languages)?.length > 0 &&
+                    Object?.values(country?.languages)?.map(
+                      (languange: any, i: number) => (
+                        <div key={i}>
+                          <li key={i} className="text-start">
+                            &bull; {languange}
+                          </li>
+                        </div>
+                      )
+                    )}
                 </ul>
               </div>
             </div>
@@ -99,13 +112,19 @@ const DetailPage = () => {
               </div>
               <div className="flex flex-col w-full justify-center items-start text-start p-2">
                 <ul>
-                  {(country && country?.currencies && Object?.keys(country?.currencies)?.length > 0) &&
-                    Object?.keys(country?.currencies)?.map((currency: any, i: number) => (
-                      <div key={i}>
-                        <li key={i} className="text-start">&bull; {currency} ({country?.currencies[currency]?.name})</li>
-                      </div>
-                    ))
-                  }
+                  {country &&
+                    country?.currencies &&
+                    Object?.keys(country?.currencies)?.length > 0 &&
+                    Object?.keys(country?.currencies)?.map(
+                      (currency: any, i: number) => (
+                        <div key={i}>
+                          <li key={i} className="text-start">
+                            &bull; {currency} (
+                            {country?.currencies[currency]?.name})
+                          </li>
+                        </div>
+                      )
+                    )}
                 </ul>
               </div>
             </div>
@@ -116,10 +135,23 @@ const DetailPage = () => {
                 <p>:</p>
               </div>
               <div className="flex flex-col w-full justify-center items-start text-start p-2">
-                <p className="text-start">{country?.independent ? "Yes" : "No"}</p>
+                <p className="text-start">
+                  {country?.independent ? "Yes" : "No"}
+                </p>
               </div>
             </div>
-
+            {/* land-area */}
+            <div className="flex w-full min-h-[3rem] bg-green-200">
+              <div className="flex w-[10rem] px-2 justify-between items-center text-start bg-red-100">
+                <p>Land Area</p>
+                <p>:</p>
+              </div>
+              <div className="flex flex-col w-full justify-center items-start text-start p-2">
+                <p className="text-start">
+                  {country?.area}km<sup>2</sup>
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Third Div */}
@@ -127,7 +159,9 @@ const DetailPage = () => {
             <h2 className="font-semibold text-xl my-2">Location</h2>
             <div className="flex h-full w-full">
               <canvas className="w-full h-[15rem] border-slate-600 border bg-BaseWhite rounded-md">
-                <p className="flex text-center justify-end items-center text-black">google maps</p>
+                <p className="flex text-center justify-end items-center text-black">
+                  google maps
+                </p>
               </canvas>
             </div>
             <div className="flex absolute left-0 bottom-0 w-full justify-center items-center h-[10vh]">
@@ -137,7 +171,7 @@ const DetailPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DetailPage
+export default DetailPage;

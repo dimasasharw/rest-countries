@@ -23,8 +23,8 @@ export default function CountryCard({ country }: CountryCardProps) {
       <CardMedia
         component="img"
         sx={{
-          minHeight: 180,
-          maxHeight: 180,
+          height: 200,
+          // maxHeight: 180,
           objectFit: 'contain',
           // backgroundColor: '#f5f5f5',
           padding: '0.5rem',
@@ -33,7 +33,7 @@ export default function CountryCard({ country }: CountryCardProps) {
         title={`${country?.name?.common} flag`}
       />
       <CardContent
-        sx={{ height: 150 }}
+        sx={{ height: 160 }}
       >
         <Typography gutterBottom variant="h5" component="div"
           sx={{ height: 60 }}

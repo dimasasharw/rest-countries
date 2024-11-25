@@ -9,7 +9,6 @@ const DetailPage = () => {
   const { countryName, cca2 } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const { country, loading } = useSelector((state: any) => state.country)
-
   useEffect(() => {
     if (countryName && cca2) {
       dispatch(fetchDetailCountry(countryName, cca2))
@@ -28,7 +27,7 @@ const DetailPage = () => {
             <img src={`${window.location.origin}/loading-docs.svg`} />
           </div>
         )}
-        <div className="flex flex-wrap w-full overflow-y-auto scrollbar-hide rounded-lg bg-stone-300">
+        <div className="flex flex-wrap w-full overflow-y-auto overflow-x-hidden scrollbar-hide rounded-lg bg-stone-300">
           {/* First Div */}
           <div className="flex flex-col items-center text-lg leading-relaxed text-gray-700 gap-3 justify-start p-3 flex-1">
             <h1 className="font-semibold text-4xl my-4">{countryName}</h1>
@@ -124,14 +123,14 @@ const DetailPage = () => {
           </div>
 
           {/* Third Div */}
-          <div className="flex flex-col min-w-[15rem] h-full gap-2 p-3 flex-1">
+          <div className="flex relative flex-col min-w-[15rem] h-full gap-2 p-3 flex-1">
             <h2 className="font-semibold text-xl my-2">Location</h2>
             <div className="flex h-full w-full">
               <canvas className="w-full h-[15rem] border-slate-600 border bg-BaseWhite rounded-md">
                 <p className="flex text-center justify-end items-center text-black">google maps</p>
               </canvas>
             </div>
-            <div className="flex w-full justify-center items-center h-[10vh]">
+            <div className="flex absolute left-0 bottom-0 w-full justify-center items-center h-[10vh]">
               <Button variant="outlined">Collaborate</Button>
             </div>
           </div>

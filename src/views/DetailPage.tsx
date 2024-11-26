@@ -62,8 +62,18 @@ const DetailPage = () => {
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
         leafletMap
       );
+      const markerIcon = L.icon({
+        iconUrl:
+          "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        tooltipAnchor: [16, -28],
+      });
 
-      L.marker([lat, lng]).addTo(leafletMap).bindPopup("Location");
+      L.marker([lat, lng], { icon: markerIcon })
+        .addTo(leafletMap)
+        .bindPopup("Location");
 
       return () => {
         leafletMap.remove();

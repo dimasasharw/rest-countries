@@ -26,10 +26,9 @@ const DetailPage = () => {
     ``;
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(country, "<<<<from store country detail");
-  }, []);
-
+  /**
+   * For gmaps
+   */
   const mapRef = useRef(null);
 
   useEffect(() => {
@@ -95,43 +94,32 @@ const DetailPage = () => {
           {/* First Div */}
           <div className="flex flex-col items-center text-lg leading-relaxed text-gray-700 gap-3 justify-start p-3 flex-1">
             <h1 className="font-semibold text-4xl my-4">{countryName}</h1>
-            <div className="flex w-full p-5 flex-wrap justify-around items-center gap-3">
-              {country?.coatOfArms?.png && (
+            {loading ? (
+              <div className="max-w-[20rem] h-[12rem] bg-gray-300 animate-wave bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 bg-[length:200%_100%]"></div>
+            ) : (
+              <div className="flex w-full p-5 flex-wrap justify-around items-center gap-3">
+                {country?.coatOfArms?.png && (
+                  <img
+                    src={country?.coatOfArms?.png}
+                    alt={`${country?.name?.common} flag`}
+                    className="max-w-[10rem] h-auto"
+                  />
+                )}
                 <img
-                  src={country?.coatOfArms?.png}
+                  src={country?.flags?.png}
                   alt={`${country?.name?.common} flag`}
-                  className="max-w-[10rem] h-auto"
+                  className="max-w-[12rem] h-auto"
                 />
-              )}
-              <img
-                src={country?.flags?.png}
-                alt={`${country?.name?.common} flag`}
-                className="max-w-[12rem] h-auto"
-              />
-            </div>
-            {/* {loading ? (
-            <div className="max-w-[20rem] h-[12rem] bg-gray-300 animate-wave bg-gradient-to-r from-gray-300 via-gray-100 to-gray-300 bg-[length:200%_100%]"></div>
-          ) : (
-          )} */}
+              </div>
+            )}
             <div className=" text-lg text-justify">
-              {`Officially known as ${country?.name?.official}. This ${
-                country?.independent ? "independent" : "non-independent"
-              } country is located in ${country?.subregion}, a part of the ${
-                country?.region
-              } region. It is ${
-                country?.capital?.length > 0
+              {`Officially known as ${country?.name?.official}. This ${country?.independent ? "independent" : "non-independent"
+                } country is located in ${country?.subregion}, a part of the ${country?.region
+                } region. It is ${country?.capital?.length > 0
                   ? `proudly led from its capital, ${country?.capital[0]}`
                   : "without a designated capital"
-              } and has a population of approximately ${country?.population?.toLocaleString()} people. 
+                } and has a population of approximately ${country?.population?.toLocaleString()} people. 
               `}
-              {/* <a
-              href={country.maps.googleMaps}
-              className="text-blue-500 underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google Maps
-            </a>. */}
             </div>
             <div>
               <p className="justify-normal text-justify">
@@ -283,9 +271,8 @@ const DetailPage = () => {
               </p>
             </div>
             <div
-              className={`flex absolute left-0 bottom-0 w-full justify-center items-center h-[10vh] ${
-                isCollaborated ? "hidden" : ""
-              }`}
+              className={`flex absolute left-0 bottom-0 w-full justify-center items-center h-[10vh] ${isCollaborated ? "hidden" : ""
+                }`}
             >
               <Button
                 variant="outlined"

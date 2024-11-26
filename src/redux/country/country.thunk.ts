@@ -8,7 +8,6 @@ export const fetchAllCountries = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios(`${baseURL}/all`)
-    // console.log(response, '<<<<response getall')
     dispatch(setCountries(response?.data))
   } catch (error) {
     console.log(error, '<error fetching countries')
@@ -19,7 +18,6 @@ export const fetchDetailCountry = (countryName: string, cca2: string) => async (
   try {
     dispatch(setLoading(true));
 
-    // Fetch the detail country using both `countryName` and `cca2`
     const responseDetail = await axios(`${baseURL}/name/${countryName}`);
 
     const country = responseDetail?.data?.find((item: any) => item.cca2 === cca2);

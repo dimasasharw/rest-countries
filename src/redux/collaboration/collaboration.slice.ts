@@ -49,7 +49,6 @@ export const addCollaborationCountryList = (newCollaborator: any) =>
       console.log(`Sorry, ${newCollaborator.name.common} ignored to collaborate.`);
     }
 
-    // Set loadingCollaboration to false after 1 second(s)
     setTimeout(() => {
       dispatch(setLoadingCollaboration(false));
     }, 1000);
@@ -62,5 +61,5 @@ export const removeCollaborator = (collaboratorName: string) =>
 
     const collaborators = currentCountries?.filter((country: any) => country?.name?.common !== collaboratorName)
     dispatch(setCollaboratedCountries(collaborators))
-    toast.success(`collaboratorName has been removed from the list`)
+    toast.success(`${collaboratorName} has been removed from the list`)
   };

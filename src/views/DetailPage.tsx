@@ -15,8 +15,8 @@ const DetailPage = () => {
   const { collaboratedCountries } = useSelector(
     (state: any) => state.collaboration
   );
-  const isCollaborated = collaboratedCountries.some(
-    (collaborator: any) => collaborator.name.common === country.name.common
+  const isCollaborated = collaboratedCountries?.some(
+    (collaborator: any) => collaborator?.name?.common === country?.name?.common
   );
 
   useEffect(() => {
@@ -35,9 +35,9 @@ const DetailPage = () => {
   useEffect(() => {
     if (!country?.latlng) return;
 
-    const [lat, lng] = country.latlng;
+    const [lat, lng] = country?.latlng;
 
-    const map = mapRef.current;
+    const map = mapRef?.current;
 
     // Function to calculate zoom
     const calculateZoomLevel = (area: number) => {
@@ -59,10 +59,10 @@ const DetailPage = () => {
         touchZoom: true,
       });
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
+      L?.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
         leafletMap
       );
-      const markerIcon = L.icon({
+      const markerIcon = L?.icon({
         iconUrl:
           "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
         iconSize: [25, 41],
@@ -71,7 +71,7 @@ const DetailPage = () => {
         tooltipAnchor: [16, -28],
       });
 
-      L.marker([lat, lng], { icon: markerIcon })
+      L?.marker([lat, lng], { icon: markerIcon })
         .addTo(leafletMap)
         .bindPopup("Location");
 
@@ -263,7 +263,7 @@ const DetailPage = () => {
               <p>
                 Visit{" "}
                 <a
-                  href={country?.maps.googleMaps}
+                  href={country?.maps?.googleMaps}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-500 underline"
@@ -272,7 +272,7 @@ const DetailPage = () => {
                 </a>{" "}
                 to view the location or check the{" "}
                 <a
-                  href={country?.maps.openStreetMaps}
+                  href={country?.maps?.openStreetMaps}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-500 underline"

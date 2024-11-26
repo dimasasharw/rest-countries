@@ -256,7 +256,7 @@ const DetailPage = () => {
                 ref={mapRef} // Ensure map renders inside this div
                 className="w-full h-[15rem] border-slate-600 border bg-[#E7E5E4] rounded-md"
               >
-                {/* The map will be rendered here */}
+                {/* map render */}
               </div>
             </div>
             <div className="">

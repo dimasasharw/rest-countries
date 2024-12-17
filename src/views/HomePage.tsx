@@ -26,6 +26,15 @@ const HomePage = () => {
     const filteredCountries = countries?.filter((country: any) => country?.name?.common[0] === abj)
     setArrayCountries(filteredCountries)
   }
+  const filterAsc = () => {
+    const filtera = arrayCountries?.sort((a: any, b: any) => a.name?.common - b.name?.common)
+    console.log(filtera)
+    setArrayCountries(filtera)
+  }
+  const filterDesc = () => {
+    const filterd = arrayCountries?.sort((a: any, b: any) => b.name?.common - a.name?.common)
+    setArrayCountries(filterd)
+  }
 
   /**
    * query search
@@ -78,6 +87,10 @@ const HomePage = () => {
             <div className="flex justify-center items-center">
               <Button variant="outlined" onClick={() => setArrayCountries(countries)}>Reset</Button>
 
+            </div>
+            <div className="flex justify-center items-center gap-2">
+              <Button variant="outlined" onClick={() => filterAsc()}>Asc</Button>
+              <Button variant="outlined" onClick={() => filterDesc()}>Desc</Button>
             </div>
 
           </div>

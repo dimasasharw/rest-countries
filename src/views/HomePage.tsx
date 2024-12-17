@@ -6,6 +6,7 @@ import { AppDispatch } from "../types/declarations"
 import CountryCard from "../components/CountryCard";
 import { useNavigate } from "react-router-dom";
 import { ArrowDown01Icon, Cancel01Icon, Search01Icon } from "hugeicons-react";
+import { Button } from "@mui/material";
 
 const HomePage = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -18,6 +19,13 @@ const HomePage = () => {
     dispatch(fetchAllCountries())
   }, [dispatch])
 
+  const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+  const filterAbjad = (abj: string) => {
+    console.log(abj, '<<<<<<<abj')
+    const filteredCountries = countries?.filter((country: any) => country?.name?.common[0] === abj)
+    setArrayCountries(filteredCountries)
+  }
 
   /**
    * query search
@@ -58,6 +66,20 @@ const HomePage = () => {
               <p>Filter</p>
               <ArrowDown01Icon className="w-5 h-5" />
             </div>
+          </div>
+          <div>
+            <div className="flex flex-wrap justify-center items-center pb-5 gap-2">
+              {alphabet && alphabet?.length > 0 &&
+                alphabet?.map((al, idx) => (
+                  <Button key={idx} variant="outlined" onClick={() => filterAbjad(al)}>{al}</Button>
+                ))
+              }
+            </div>
+            <div className="flex justify-center items-center">
+              <Button variant="outlined" onClick={() => setArrayCountries(countries)}>Reset</Button>
+
+            </div>
+
           </div>
           <div className="flex flex-wrap w-full h-full items-center justify-center gap-6 my-3 text-center">
             {(arrayCountries && arrayCountries?.length > 0) &&

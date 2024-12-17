@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { AppDispatch } from "../types/declarations";
 import { fetchDetailCountry } from "../redux/country/country.thunk";
 import { Button } from "@mui/material";
-import { addCollaborationCountryList } from "../redux/collaboration/collaboration.slice";
+import { addCollaborationCountryList, removeCollaborator } from "../redux/collaboration/collaboration.slice";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -270,16 +270,30 @@ const DetailPage = () => {
                 .
               </p>
             </div>
+            <div>
+              <p>status : {isCollaborated ? "collaborator" : "non-collaborator"}</p>
+            </div>
             <div
-              className={`flex absolute left-0 bottom-0 w-full justify-center items-center h-[10vh] ${isCollaborated ? "hidden" : ""
-                }`}
+              className={`flex absolute left-0 bottom-0 w-full justify-center items-center h-[10vh]`}
             >
-              <Button
-                variant="outlined"
-                onClick={() => dispatch(addCollaborationCountryList(country))}
-              >
-                Ask Collaboration
-              </Button>
+              {
+                isCollaborated ? (
+                  <Button
+                    variant="outlined"
+                    onClick={() => dispatch(removeCollaborator(country?.name?.common))}
+                  >
+                    Cancel Collaboration
+                  </Button>
+
+                ) : (
+                  <Button
+                    variant="outlined"
+                    onClick={() => dispatch(addCollaborationCountryList(country))}
+                  >
+                    Ask Collaboration
+                  </Button>
+                )
+              }
             </div>
           </div>
         </div>

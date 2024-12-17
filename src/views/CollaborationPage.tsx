@@ -45,6 +45,12 @@ const CollaborationPage = () => {
                       align="center"
                       className="font-semibold text-center"
                     >
+                      flag
+                    </TableCell>
+                    <TableCell
+                      align="center"
+                      className="font-semibold text-center"
+                    >
                       Country Name
                     </TableCell>
                     <TableCell align="center" className="font-semibold">
@@ -54,8 +60,20 @@ const CollaborationPage = () => {
                 </TableHead>
                 <TableBody className="flex h-full overflow-y-auto scrollbar-hide">
                   {collaboratedCountries.map((collaborator: any, i: number) => (
-                    <TableRow key={i}>
-                      <TableCell align="center">
+                    <TableRow key={i} className="hover:bg-slate-300 cursor-pointer">
+                      <TableCell
+                        onClick={() => navigate(`/${collaborator?.name?.common}/${collaborator?.cca2}`)}
+                        align="center"
+                        className="flex items-center justify-center">
+                        <img
+                          src={collaborator?.flags?.png}
+                          alt={`${collaborator?.name?.common} flag`}
+                          className="max-w-[5rem] h-auto "
+                        />
+                        {/* {collaborator?.flags?.png} */}
+                      </TableCell>
+                      <TableCell align="center"
+                        onClick={() => navigate(`/${collaborator?.name?.common}/${collaborator?.cca2}`)}>
                         {collaborator?.name?.common}
                       </TableCell>
                       <TableCell align="center">

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Table,
@@ -22,9 +22,9 @@ const CollaborationPage = () => {
     (state: any) => state.collaboration
   );
 
-  useEffect(() => {
-    console.log(collaboratedCountries);
-  }, []);
+  // useEffect(() => {
+  //   console.log(collaboratedCountries);
+  // }, []);
 
   return (
     <div className="flex items-center justify-center w-full h-full">
@@ -60,11 +60,19 @@ const CollaborationPage = () => {
                 </TableHead>
                 <TableBody className="flex h-full overflow-y-auto scrollbar-hide">
                   {collaboratedCountries.map((collaborator: any, i: number) => (
-                    <TableRow key={i} className="hover:bg-slate-300 cursor-pointer">
+                    <TableRow
+                      key={i}
+                      className="hover:bg-slate-300 cursor-pointer"
+                    >
                       <TableCell
-                        onClick={() => navigate(`/${collaborator?.name?.common}/${collaborator?.cca2}`)}
+                        onClick={() =>
+                          navigate(
+                            `/${collaborator?.name?.common}/${collaborator?.cca2}`
+                          )
+                        }
                         align="center"
-                        className="flex items-center justify-center">
+                        className="flex items-center justify-center"
+                      >
                         <img
                           src={collaborator?.flags?.png}
                           alt={`${collaborator?.name?.common} flag`}
@@ -72,8 +80,14 @@ const CollaborationPage = () => {
                         />
                         {/* {collaborator?.flags?.png} */}
                       </TableCell>
-                      <TableCell align="center"
-                        onClick={() => navigate(`/${collaborator?.name?.common}/${collaborator?.cca2}`)}>
+                      <TableCell
+                        align="center"
+                        onClick={() =>
+                          navigate(
+                            `/${collaborator?.name?.common}/${collaborator?.cca2}`
+                          )
+                        }
+                      >
                         {collaborator?.name?.common}
                       </TableCell>
                       <TableCell align="center">

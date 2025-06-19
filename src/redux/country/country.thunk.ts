@@ -9,7 +9,7 @@ export const fetchAllCountries = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios(
-      `${baseURL}/all/?fields=name,flags,region,capital`
+      `${baseURL}/all/?fields=name,flags,region,capital,cca2`
     );
     dispatch(setCountries(response?.data));
   } catch (error) {

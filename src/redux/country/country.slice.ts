@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { CountryState } from "../../types/state"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import { CountryState } from "../../types/state";
 
 const initialState: CountryState = {
   countries: [],
   country: {},
-  loading: false
-}
+  loading: false,
+};
 
 const countrySlice = createSlice({
-  name: 'country',
+  name: "country",
   initialState,
   reducers: {
     setCountries: (state, action: PayloadAction<any[]>) => {
@@ -26,8 +26,9 @@ const countrySlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
-  }
-})
+  },
+});
 
-export const { setCountries, setCountry, clearCountry, setLoading } = countrySlice.actions;
+export const { setCountries, setCountry, clearCountry, setLoading } =
+  countrySlice.actions;
 export default countrySlice.reducer;
